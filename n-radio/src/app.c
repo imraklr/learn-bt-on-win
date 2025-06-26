@@ -1,5 +1,5 @@
 /**
- * @file main.c
+ * @file app.c
  * @author Rakesh Kumar
  * @brief A program to find out number of bluetooth radios available on system.
  * @note Please maintain the order in which headers are imported because a preprocessor simply pastes the entire code 
@@ -7,18 +7,14 @@
  * @version 0.1.0
  * @date 2025-06-26
  * 
- * @copyright Copyright (c) 2025
  * 
  */
 #include <stdio.h>
 #include <intsafe.h>
 #include <initguid.h>
 #include <bthsdpdef.h>
-
-// // To work with bluetooth sockets
 #include <WinSock2.h>
 #include <ws2bth.h>
-
 #include <BluetoothAPIs.h>
 
 int main() {
@@ -38,7 +34,7 @@ int main() {
     HBLUETOOTH_RADIO_FIND nextsHandle = BluetoothFindFirstRadio(pbtfrp, &phRadio);
     if(nextsHandle == NULL) {
         DWORD lastError = GetLastError();
-        wprintf(L"-Fatal- Operation failure: Couldn't find the first radio thus no next radio handle was obtained: %d\n", lastError);
+        wprintf(L"-Fatal- Operation failure: Couldn't find the first radio thus no handle, error: %d\n", lastError);
         return -1; // we have a safe option to exit here.
     }
     ++numberOfRadiosFound;
