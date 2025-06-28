@@ -1,0 +1,10 @@
+^C:\USERS\RAKESH KUMAR\DESKTOP\LEARN-BT-ON-WIN\FIND-DEVICE\BUILD\CMAKEFILES\AECAA731FFB14A7B880D6CF3ACF98F10\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/Rakesh Kumar/Desktop/learn-bt-on-win/find-device" "-BC:/Users/Rakesh Kumar/Desktop/learn-bt-on-win/find-device/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Rakesh Kumar/Desktop/learn-bt-on-win/find-device/build/find-device.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
