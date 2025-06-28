@@ -66,7 +66,7 @@ int main() {
     pbtdsp->fReturnUnknown = TRUE;
     pbtdsp->fReturnConnected = TRUE;
     pbtdsp->fIssueInquiry = TRUE;
-    pbtdsp->cTimeoutMultiplier = 48;
+    pbtdsp->cTimeoutMultiplier = 10;
     pbtdsp->hRadio = hRadio;
 
     // device info structure
