@@ -42,6 +42,9 @@ int main() {
             case ERROR_OUTOFMEMORY: // major fault
                 wprintf(L"Out of memory.\n");
                 return -1; // safe to exit
+            case ERROR_NO_MORE_ITEMS:
+                wprintf(L"First radio device is switched off or not available.\n");
+                return 0; // safe to exit
             default:
                 wprintf(L"Exiting, unknown error occurred, error code: %d.\n", _);
         )
@@ -76,6 +79,7 @@ int main() {
             case ERROR_OUTOFMEMORY: // major fault
                 wprintf(L"Out of memory.\n");
                 return -1; // safe to exit
+            // We don't need to check for ERROR_NO_MORE_ITEMS because first radio check ensures at least one radio presence.
             default:
                 wprintf(L"Exiting, unknown error occurred, error code: %d.\n", _);
         )
@@ -85,8 +89,13 @@ int main() {
     
 
     // cleanup
-    if(BluetoothFindRadioClose(hRadio) == FALSE) {
-        wprintf(L"Failed to close the radio find handle, error code: %d.\n", GetLastError());
+    if((handle_for_next != NULL) && (BluetoothFindRadioClose(handle_for_next) == FALSE)) {
+        wprintf(L"Failed to close the next radio find handle, error code: %d.\n", GetLastError());
+        return -1;
+    }
+    if(CloseHandle(hRadio) == FALSE) {
+        wprintf(L"Failed to close the radio handle, error code: %d.\n", GetLastError());
+        return -1;
     }
 
     return 0;
