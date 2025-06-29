@@ -84,5 +84,10 @@ int main() {
     wprintf(L"No more bluetooth radios found.\n");
     
 
+    // cleanup
+    if(BluetoothFindRadioClose(hRadio) == FALSE) {
+        wprintf(L"Failed to close the radio find handle, error code: %d.\n", GetLastError());
+    }
+
     return 0;
 }
